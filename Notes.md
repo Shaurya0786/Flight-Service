@@ -93,3 +93,20 @@ Each Table is considered as a Model in ORM
        error explanation (this takes error message input only)
 
     and we use that custom implementaion and send in res body if error occured  
+
+ Adding a Seeder file the seeder file helps in seeding the database with data to generate a seeder file run the command 
+
+ ```
+ npx sequelize seed:generate --name add-<seeded-table-name>
+ ```
+ and now write the up and the down function and the data that is to be seeded 
+
+ now run the command to seed 
+ ```
+ npx sequelize db:seed:all
+ ```
+and to undo the seeding 
+```
+npx sequelize db:seed:undo:all
+```
+

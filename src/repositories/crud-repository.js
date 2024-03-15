@@ -13,11 +13,12 @@ class CrudRepository{
     }
 
     async destroy(data){
-        const response = await this.model.destroy(data,{
+        const response = await this.model.destroy({
             where:{
-                id
+                id:data
             }
         })
+        if(!response) throw new AppError("Not Able To Find The Resource",StatusCodes.NOT_FOUND)
         return response
     }
 
@@ -37,7 +38,7 @@ class CrudRepository{
     async update(data){
         const response = await this.model.update(data,{
             where:{
-                id
+                id:data
             }
         })
          return response

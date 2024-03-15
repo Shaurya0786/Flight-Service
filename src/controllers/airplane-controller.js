@@ -3,6 +3,8 @@ const {AirplaneService} = require("../services")
 const { StatusCodes} = require("http-status-codes")
 
 const { SuccessResponse,ErrorResponse } = require("../utils/common")
+const { error } = require("../utils/common/error-response")
+const { AppError } = require("../utils")
 
 async function createAirplane(req,res) {
     try {
@@ -21,4 +23,39 @@ async function createAirplane(req,res) {
     }
 }
 
-module.exports =  createAirplane
+async function getAllAirplane(req,res){
+    try {
+        const airplane = await AirplaneService.getAirplanes()
+        SuccessResponse.data=airplane
+        SuccessResponse.message="All Airplane Data Sent"
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse)
+        
+    } catch (error) {
+        ErrorResponse.error= error
+        return res.status(error.StatusCode).json(ErrorResponse)
+    }
+}
+
+
+async function getAirplane(req,res){
+    try {
+        const airplane = await AirplaneService.getAirplane(req.params.id)
+        SuccessResponse.data=airplane
+        SuccessResponse.message="SuccessFully Fetched Airplane Data"
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse)
+        
+    } catch (error) {
+        ErrorResponse.error= error
+        return res.status(error.StatusCode).json(ErrorResponse)
+    }
+}
+
+module.exports = {
+    createAirplane,
+    getAllAirplane,
+    getAirplane
+}

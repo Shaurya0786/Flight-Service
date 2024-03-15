@@ -1,4 +1,6 @@
-const { logger }  = require("../config")
+const { StatusCodes } = require("http-status-codes");
+const { logger }  = require("../config");
+const { AppError } = require("../utils");
 
 class CrudRepository{
     constructor(model){
@@ -11,55 +13,34 @@ class CrudRepository{
     }
 
     async destroy(data){
-        try {
-            const response = await this.model.destroy(data,{
-                where:{
-                    id
-                }
-            })
-            return response
-            
-        } catch (error) {
-            logger.error("Something went Wrong in Crud Repo : Destroy")
-            throw error
-        }
+        const response = await this.model.destroy(data,{
+            where:{
+                id
+            }
+        })
+        return response
     }
 
     async get(data){
-        try {
-            const response = await this.model.findByPk(data)
-            return response
-            
-        } catch (error) {
-            logger.error("Something went Wrong in Crud Repo : get")
-            throw error
+        const response = await this.model.findByPk(data)
+        if(!response){
+            throw new AppError("Not Able To Find The Resource",StatusCodes.NOT_FOUND)
         }
+        return response
     }
 
-    async getAll(data){
-        try {
-            const response = await this.model.findAll()
-            return response
-            
-        } catch (error) {
-            logger.error("Something went Wrong in Crud Repo : getAll")
-            throw error
-        }
+    async getAll(){
+        const response = await this.model.findAll()
+        return response
     }
     
     async update(data){
-        try {
-            const response = await this.model.update(data,{
-                where:{
-                    id
-                }
-            })
-            return response
-            
-        } catch (error) {
-            logger.error("Something went Wrong in Crud Repo : update")
-            throw error
-        }
+        const response = await this.model.update(data,{
+            where:{
+                id
+            }
+        })
+         return response
     }
 }
 

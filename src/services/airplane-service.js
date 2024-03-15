@@ -19,6 +19,32 @@ async function createAirplane(data) {
    } 
 } 
 
+async function getAirplanes(){
+   try {
+      const airplane = await airplanerepo.getAll();
+      return airplane
+   } catch (error) {
+   throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
+   }
+}
+
+
+async function getAirplane(id){
+   try {
+      const airplane = await airplanerepo.get(id);
+      return airplane
+   } catch (error) {
+   if(error.StatusCode==StatusCodes.NOT_FOUND){
+      throw new AppError("Not Able to Find the Airplane in DB",StatusCodes.NOT_FOUND)
+   }
+   throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
+   }
+}
+
+
+
 module.exports = {
-    createAirplane
+    createAirplane,
+    getAirplanes,
+    getAirplane
 }

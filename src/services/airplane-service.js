@@ -55,10 +55,24 @@ async function destroyAirplane(id){
 }
 
 
+async function updateAirplane(data,id){
+   try {
+      const response = await airplanerepo.update(data,id);
+      return response
+   } catch (error) {
+   if(error.StatusCode==StatusCodes.NOT_FOUND){
+      throw new AppError("Not Able to Find the Airplane in DB",StatusCodes.NOT_FOUND)
+   }
+   throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
+   }
+}
+
+
 
 module.exports = {
     createAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane
+    destroyAirplane,
+    updateAirplane
 }

@@ -35,12 +35,13 @@ class CrudRepository{
         return response
     }
     
-    async update(data){
+    async update(data,id){
         const response = await this.model.update(data,{
             where:{
-                id:data
+                id:id
             }
         })
+        if(!response) throw new AppError("Not Able To Find The Resource",StatusCodes.NOT_FOUND)
          return response
     }
 }

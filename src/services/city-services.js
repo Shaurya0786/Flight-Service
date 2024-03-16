@@ -8,7 +8,7 @@ async function createCity(data) {
     const city = await cityrepo.create(data)
     return city
    } catch (error) {
-      if(error.name == "SequelizeUniqueConstraintError"){
+      if(error.name == "SequelizeUniqueConstraintError" || error.name== "SequelizeValidationError"){
          let explanation = []
          error.errors.forEach((err) => {
             explanation.push(err.message)
@@ -44,7 +44,8 @@ async function getCity(id){
 
 async function destroycity(id){
    try {
-      const response = await cityerepo.destroy(id);
+      const response = await cityrepo.destroy(id);
+      console.log(response)
       return response
    } catch (error) {
    if(error.StatusCode==StatusCodes.NOT_FOUND){
@@ -57,7 +58,7 @@ async function destroycity(id){
 
 async function updatecity(data,id){
    try {
-      const response = await cityerepo.update(data,id);
+      const response = await cityrepo.update(data,id);
       return response
    } catch (error) {
    if(error.StatusCode==StatusCodes.NOT_FOUND){

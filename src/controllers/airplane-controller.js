@@ -3,8 +3,7 @@ const {AirplaneService} = require("../services")
 const { StatusCodes} = require("http-status-codes")
 
 const { SuccessResponse,ErrorResponse } = require("../utils/common")
-const { error } = require("../utils/common/error-response")
-const { AppError } = require("../utils")
+
 
 async function createAirplane(req,res) {
     try {
@@ -72,7 +71,6 @@ async function destroy(req,res){
 
 async function Update(req,res){
     try {
-        console.log(req.body)
         const airplane = await AirplaneService.updateAirplane({
             modelNumber:req.body.modelNumber,
             capacity:req.body.capacity

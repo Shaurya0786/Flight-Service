@@ -1,7 +1,7 @@
 
 use the sequelize cli and create your first database
 
-the ormcli can be used to create a database very easily by runniing commant 
+the orm cli can be used to create a database very easily by runniing commant 
 
 ```
 npx sequelize db:create

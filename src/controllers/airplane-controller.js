@@ -72,6 +72,7 @@ async function destroy(req,res){
 
 async function Update(req,res){
     try {
+        console.log(req.body)
         const airplane = await AirplaneService.updateAirplane({
             modelNumber:req.body.modelNumber,
             capacity:req.body.capacity

@@ -19,4 +19,6 @@ app.listen(ServerConfig.Port,async ()=>{
     // const city = await City.findByPk(8);
     // const response = await city.createAirport({name:'Shaheed Bhagat Singh International Airport',code:'IXC'})
     // console.log(response)
+    
+
 })

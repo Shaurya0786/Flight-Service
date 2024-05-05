@@ -110,3 +110,5 @@ and to undo the seeding
 npx sequelize db:seed:undo:all
 ```
 
+
+Association Notes 

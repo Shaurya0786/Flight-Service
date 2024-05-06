@@ -47,9 +47,19 @@ async function getAirport(data){
 }
 
 
+async function destroyAirport(data){
+    try {
+        const response = await airportInstance.destroy(data)
+        return response
+    } catch (error) {
+        throw new AppError("Error in destroying Airport Data",StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+
 
 module.exports = {
     createAirport,
     getAirports,
-    getAirport
+    getAirport,
+    destroyAirport
 }

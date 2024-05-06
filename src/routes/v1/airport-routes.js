@@ -9,4 +9,6 @@ router.get('/',AirportControllers.getAllAirports)
 
 router.get('/:id',AirportControllers.getAirport)
 
+router.delete('/:id',AirportControllers.destroyAirport)
+
 module.exports = router

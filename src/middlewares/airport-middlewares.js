@@ -2,8 +2,6 @@ const { StatusCodes } = require("http-status-codes")
 const { AppError } = require("../utils")
 const { ErrorResponse } = require("../utils/common")
 
-
-
 async function airportpostmiddleware(req,res,next){
     if(!req.body.cityid){
         ErrorResponse.error = new AppError(['Cityid not present in request'],StatusCodes.BAD_REQUEST)

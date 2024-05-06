@@ -41,10 +41,21 @@ async function getAirport(req,res){
     }
 }
 
+async function destroyAirport(req,res){
+    try {
+        const response = await AirportServices.destroyAirport(req.params.id)
+        SuccessResponse.data = response
+        return res.status(StatusCodes.OK).json(SuccessResponse)
+    } catch (error) {
+    ErrorResponse.error = error
+    return res.status(ErrorResponse.error.StatusCode).json(ErrorResponse)
+    }
+}
 
 
 module.exports = {
     createAirportController,
     getAllAirports,
-    getAirport
+    getAirport,
+    destroyAirport
 }

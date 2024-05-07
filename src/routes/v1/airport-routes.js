@@ -11,4 +11,6 @@ router.get('/:id',AirportControllers.getAirport)
 
 router.delete('/:id',AirportControllers.destroyAirport)
 
+router.patch('/:id',AirportControllers.updateAirportController)
+
 module.exports = router

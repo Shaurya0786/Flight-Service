@@ -52,10 +52,27 @@ async function destroyAirport(req,res){
     }
 }
 
+async function updateAirportController(req,res){
+    try {
+        const airport = await AirportServices.updateAirport({
+            name:req.body.name,
+            cityid:req.body.cityid,
+            code:req.body.code,
+            address:req.body.address
+        },req.params.id)
+        SuccessResponse.data=airport
+        return res.status(StatusCodes.CREATED).json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(ErrorResponse.error.StatusCode).json(ErrorResponse)
+    }
+}
+
 
 module.exports = {
     createAirportController,
     getAllAirports,
     getAirport,
-    destroyAirport
+    destroyAirport,
+    updateAirportController
 }

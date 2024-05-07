@@ -56,10 +56,31 @@ async function destroyAirport(data){
     }
 }
 
+async function updateAirport(data,id){
+    try {
+        const response = await airportInstance.update(data,id)
+        return response
+    } catch (error) {
+        if(error.name == "SequelizeUniqueConstraintError" || error.name== "SequelizeValidationError"  ){
+            let explanation = []
+            error.errors.forEach((err) => {
+                explanation.push(err.message)
+            });
+            throw new AppError(explanation,StatusCodes.BAD_REQUEST)
+        }
+        if(error.name=='SequelizeForeignKeyConstraintError'){
+            let explanation = []
+            explanation.push('City Does Not Exists Please Create CityObject Before')
+            throw new AppError(explanation,StatusCodes.BAD_REQUEST)
+        }
+            throw new AppError("Cannot Create Airport Object",StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
 
 module.exports = {
     createAirport,
     getAirports,
     getAirport,
-    destroyAirport
+    destroyAirport,
+    updateAirport
 }

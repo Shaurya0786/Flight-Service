@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     },
     totalSeats: {
-      type:DataTypes.DATE,
+      type:DataTypes.INTEGER,
       allowNull:false,
     },
     price: {

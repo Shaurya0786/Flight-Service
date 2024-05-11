@@ -60,6 +60,7 @@ async function getflights(query){
         const flights = await Flightinstance.getallflights(filter,sortorder);
         return flights
     } catch (error) {
+        console.log(error)
         throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }

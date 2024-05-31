@@ -65,10 +65,28 @@ async function getflights(query){
     }
 }
 
+async function getflight(data){
+    try {
+        const response = await Flightinstance.get(data)
+        return response
+    } catch (error) {
+        throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
 
+async function updateSeats(id,seats){
+    try {
+        const response = await Flightinstance.updateremainingSeats(id,seats)
+        return response
+    } catch (error) {
+        throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
 
 
 module.exports = {
     createflights,
-    getflights
+    getflights,
+    getflight,
+    updateSeats
 }

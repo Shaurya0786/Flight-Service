@@ -16,7 +16,7 @@ class FlightRepository extends CrudRepository{
                 include:[
                     {
                         model:City,
-                        required:true
+                         required:true
                     }
                 ]
             },
@@ -41,6 +41,22 @@ class FlightRepository extends CrudRepository{
         })
         return allflights 
     }
+
+
+    async updateremainingSeats(id,Seats,dec=true){
+        const flights = await Flight.findByPk(id)
+        if(dec){
+            const response = flights.decrement('totalSeats',{by:Seats})
+            return response
+        }
+        else{
+            const response = flights.increment('totalSeats',{by:Seats})
+            return response
+        }
+    }
+
+
+
 }
 
 module.exports = FlightRepository

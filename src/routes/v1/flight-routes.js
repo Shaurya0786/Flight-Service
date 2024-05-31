@@ -8,4 +8,8 @@ router.post('/',Flightmiddlewares.validatecreaterequest,FlightsController.create
 
 router.get('/',FlightsController.getallflightscontroller)
 
+router.get('/:id',FlightsController.getflightcontroller)
+
+router.patch('/:id',FlightsController.updateSeats)
+
 module.exports = router

@@ -74,11 +74,12 @@ async function getflight(data){
     }
 }
 
-async function updateSeats(id,seats){
+async function updateSeats(id,seats,change){
     try {
-        const response = await Flightinstance.updateremainingSeats(id,seats)
+        const response = await Flightinstance.updateremainingSeats(id,seats,change)
         return response
     } catch (error) {
+        console.log(error)
         throw new AppError("Error in Fetching Data",StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }

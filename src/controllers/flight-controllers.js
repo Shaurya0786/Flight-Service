@@ -50,7 +50,7 @@ async function getflightcontroller(req,res){
 
 async function updateSeats(req,res){
     try {
-        const flight = await FlightServices.updateSeats(req.params.id,req.body.seats)
+        const flight = await FlightServices.updateSeats(req.params.id,req.body.seats,req.body.decrease)
         SuccessResponse.data = flight
         return res.status(StatusCodes.OK).json(SuccessResponse)
     } catch (error) {

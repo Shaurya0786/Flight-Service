@@ -10,6 +10,6 @@ router.get('/',FlightsController.getallflightscontroller)
 
 router.get('/:id',FlightsController.getflightcontroller)
 
-router.patch('/:id',FlightsController.updateSeats)
+router.patch('/:id/seats',FlightsController.updateSeats)
 
 module.exports = router
